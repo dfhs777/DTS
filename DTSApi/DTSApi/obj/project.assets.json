@@ -8813,25 +8813,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DIEGO\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Christian\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DIEGO\\source\\repos\\dfhs777\\DTS\\DTSApi\\DTSApi\\DTSApi.csproj",
+      "projectUniqueName": "C:\\Users\\Christian\\source\\repos\\cambioDTS\\DTS\\DTSApi\\DTSApi\\DTSApi.csproj",
       "projectName": "DTSApi",
-      "projectPath": "C:\\Users\\DIEGO\\source\\repos\\dfhs777\\DTS\\DTSApi\\DTSApi\\DTSApi.csproj",
-      "packagesPath": "C:\\Users\\DIEGO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DIEGO\\source\\repos\\dfhs777\\DTS\\DTSApi\\DTSApi\\obj\\",
+      "projectPath": "C:\\Users\\Christian\\source\\repos\\cambioDTS\\DTS\\DTSApi\\DTSApi\\DTSApi.csproj",
+      "packagesPath": "C:\\Users\\Christian\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Christian\\source\\repos\\cambioDTS\\DTS\\DTSApi\\DTSApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\DIEGO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Christian\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
