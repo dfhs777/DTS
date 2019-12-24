@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DTSApi.Models;
+using DTSApi.Entitys;
 
 namespace DTSApi.Utils
 {
@@ -14,6 +15,11 @@ namespace DTSApi.Utils
         {
 
         }
-
+        public DbSet<Esquemas> Esquemas { get; set; }
+        public DbSet<TipoPantalla> TipoPantallas { get; set; }
+        public DbSet<Pantallas> Pantallas { get; set; }
+        public DbSet<Permisos> Permisos { get; set; }
+        public DbSet<RolesEsquema> RolesEsquemas { get; set; }
+        public DbSet<Rol> Rol { get; set; }
     }
 }
