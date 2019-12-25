@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\DTSApi",
+    "\\DTSApi\\DTSApi",
+    "\\DTSApi\\DTSApi\\Entitys",
+    "\\DTSApi\\DTSApi\\Migrations"
   ],
+  "SelectedNode": "\\DTSApi\\DTSApi\\Entitys\\Esquemas.cs",
   "PreviewInSolutionExplorer": false
 }
