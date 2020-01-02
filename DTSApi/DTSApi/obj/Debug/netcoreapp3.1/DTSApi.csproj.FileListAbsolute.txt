@@ -271,7 +271,6 @@ C:\Users\Christian\source\repos\cambioDTS\DTS\DTSApi\DTSApi\bin\Debug\netcoreapp
 C:\Users\Christian\source\repos\cambioDTS\DTS\DTSApi\DTSApi\obj\Debug\netcoreapp3.1\DTSApi.csprojAssemblyReference.cache
 C:\Users\Christian\source\repos\cambioDTS\DTS\DTSApi\DTSApi\obj\Debug\netcoreapp3.1\staticwebassets\DTSApi.StaticWebAssets.Manifest.cache
 C:\Users\Christian\source\repos\cambioDTS\DTS\DTSApi\DTSApi\obj\Debug\netcoreapp3.1\staticwebassets\DTSApi.StaticWebAssets.xml
-C:\Users\Christian\source\repos\cambioDTS\DTS\DTSApi\DTSApi\obj\Debug\netcoreapp3.1\DTSApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Christian\source\repos\cambioDTS\DTS\DTSApi\DTSApi\obj\Debug\netcoreapp3.1\DTSApi.AssemblyInfoInputs.cache
 C:\Users\Christian\source\repos\cambioDTS\DTS\DTSApi\DTSApi\obj\Debug\netcoreapp3.1\DTSApi.AssemblyInfo.cs
 C:\Users\Christian\source\repos\cambioDTS\DTS\DTSApi\DTSApi\obj\Debug\netcoreapp3.1\DTSApi.RazorTargetAssemblyInfo.cache

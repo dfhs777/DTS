@@ -30,7 +30,7 @@ namespace DTSApi
             services.AddDbContext<DatabaseContext>(options => {
                 options.UseNpgsql(Configuration.GetConnectionString("NpgSqlConnection"));
             });
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>options.SerializerSettings.ReferenceLoopHandling=Newton.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
