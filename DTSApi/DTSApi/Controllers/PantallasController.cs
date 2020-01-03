@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DTSApi.Entitys;
+using DTSApi.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DTSApi.Controllers
 {
@@ -11,36 +14,52 @@ namespace DTSApi.Controllers
     [ApiController]
     public class PantallasController : ControllerBase
     {
-        // GET: api/Pantallas
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly DatabaseContext context;
+
+        public PantallasController(DatabaseContext context)
         {
-            return new string[] { "value1", "value2" };
+            this.context = context;
+        }
+        // GET: api/Pantallas
+        //obtiene listado de Pantallas
+        [HttpGet]
+        public  ActionResult<IEnumerable<Pantallas>> Get()
+        {
+            return context.Pantallas.Include(x => x.SecuenciaTipoPantalla).Include(x => x.SecuenciaEsquemas).ToList();
         }
 
         // GET: api/Pantallas/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "ObtenerPantalla")]
+        public async Task<ActionResult<Pantallas>> GetId(int secuencia)
         {
-            return "value";
+            var claveP = await context.Pantallas.Include(x => x.SecuenciaTipoPantalla).Include(x => x.SecuenciaEsquemas).FirstOrDefaultAsync(x => x.Secuencia == secuencia);
+            if (claveP == null)
+            {
+                return NotFound();
+            }
+            return claveP;
         }
 
         // POST: api/Pantallas
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult> Post([FromBody] Pantallas pantallas)
         {
+            context.Pantallas.Add(pantallas);
+            await context.SaveChangesAsync();
+            return new CreatedAtRouteResult("ObtenerPantalla", new { id = pantallas.Secuencia }, pantallas);
         }
 
         // PUT: api/Pantallas/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult> Put(int secuencia, [FromBody] Pantallas value)
         {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (secuencia != value.Secuencia)
+            {
+                return BadRequest();
+            }
+            context.Entry(value).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return Ok();
         }
     }
 }

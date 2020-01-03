@@ -15,11 +15,11 @@ namespace DTSApi.Utils
         {
 
         }
-        public DbSet<Esquemas> Esquemas { get; set; }
-        public DbSet<TipoPantalla> TipoPantallas { get; set; }
         public DbSet<Pantallas> Pantallas { get; set; }
+        public DbSet<TipoPantalla> TipoPantalla { get; set; }
         public DbSet<Permisos> Permisos { get; set; }
-        public DbSet<RolesEsquema> RolesEsquemas { get; set; }
+        public DbSet<RolesEsquema> RolesEsquema { get; set; }
         public DbSet<Rol> Rol { get; set; }
+        public DbSet<Esquemas> Esquemas { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DTSApi.Entitys;
 using DTSApi.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -19,16 +20,16 @@ namespace DTSApi.Controllers
         // GET: api/Esquemas
         //obtiene listado de esquemas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Esquemas>>> Get()
+        public  ActionResult<IEnumerable<Esquemas>> Get()
         {
-            return await context.Esquemas.Include(x => x.Pantallas).Include(x => x.RolesEsquemas).ToList();
+            return  context.Esquemas.ToList();
         }
 
         // GET: api/Esquemas/5
         [HttpGet("{id}", Name = "ObtenerEsquema")]
         public async Task<ActionResult<Esquemas>> GetId(int secuencia)
         {
-            var claveP =await context.Esquemas.Include(x => x.Pantallas).Include(x=>x.RolesEsquemas).FirstOrDefaultAsync(x=>x.Secuencia == secuencia);
+            var claveP =await context.Esquemas.FirstOrDefaultAsync(x => x.Secuencia == secuencia);
             if (claveP == null)
             {
                 return NotFound();

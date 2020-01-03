@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DTSApi.Entitys;
+using DTSApi.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DTSApi.Controllers
 {
@@ -11,36 +14,52 @@ namespace DTSApi.Controllers
     [ApiController]
     public class RolesEsquemaController : ControllerBase
     {
-        // GET: api/RolesEsquema
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly DatabaseContext context;
+
+        public RolesEsquemaController(DatabaseContext context)
         {
-            return new string[] { "value1", "value2" };
+            this.context = context;
+        }
+        // GET: api/RolesEsquema
+        //obtiene listado de RolesEsquema
+        [HttpGet]
+        public ActionResult<IEnumerable<RolesEsquema>> Get()
+        {
+            return context.RolesEsquema.Include(x => x.SecuenciaEsquemas).Include(x => x.SecuenciaPermiso).Include(x => x.SecuenciaRol).ToList();
         }
 
         // GET: api/RolesEsquema/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "ObtenerRolesEsquema")]
+        public async Task<ActionResult<RolesEsquema>> GetId(int secuencia)
         {
-            return "value";
+            var claveP = await context.RolesEsquema.Include(x => x.SecuenciaEsquemas).Include(x => x.SecuenciaPermiso).Include(x => x.SecuenciaRol).FirstOrDefaultAsync(x => x.Secuencia == secuencia);
+            if (claveP == null)
+            {
+                return NotFound();
+            }
+            return claveP;
         }
 
-        // POST: api/RolesEsquema
+        // POST: api/Pantallas
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult> Post([FromBody] RolesEsquema rolesEsquema)
         {
+            context.RolesEsquema.Add(rolesEsquema);
+            await context.SaveChangesAsync();
+            return new CreatedAtRouteResult("ObtenerRolesEsquema", new { id = rolesEsquema.Secuencia }, rolesEsquema);
         }
 
-        // PUT: api/RolesEsquema/5
+        // PUT: api/Pantallas/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult> Put(int secuencia, [FromBody] RolesEsquema value)
         {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (secuencia != value.Secuencia)
+            {
+                return BadRequest();
+            }
+            context.Entry(value).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return Ok();
         }
     }
 }
