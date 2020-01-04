@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DTSApi.Entitys;
+using DTSApi.Models.Sql;
 using DTSApi.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,25 +12,25 @@ namespace DTSApi.Controllers
     [ApiController]
     public class EsquemasController : ControllerBase
     {
-        private readonly DatabaseContext context;
+        private readonly DatabaseContext _context;
 
         public EsquemasController(DatabaseContext context)
         {
-            this.context = context;
+            this._context = context;
         }
         // GET: api/Esquemas
         //obtiene listado de esquemas
         [HttpGet]
-        public  ActionResult<IEnumerable<Esquemas>> Get()
+        public  ActionResult<IEnumerable<Esquema>> Get()
         {
-            return  context.Esquemas.ToList();
+            return  _context.EsquemaDbSet.ToList();
         }
 
         // GET: api/Esquemas/5
         [HttpGet("{id}", Name = "ObtenerEsquema")]
-        public async Task<ActionResult<Esquemas>> GetId(int secuencia)
+        public async Task<ActionResult<Esquema>> GetId(int secuencia)
         {
-            var claveP =await context.Esquemas.FirstOrDefaultAsync(x => x.Secuencia == secuencia);
+            var claveP =await _context.EsquemaDbSet.FirstOrDefaultAsync(x => x.Secuencia == secuencia);
             if (claveP == null)
             {
                 return NotFound();
@@ -37,24 +38,37 @@ namespace DTSApi.Controllers
             return claveP;
         }
 
+        [HttpGet("/api/EsquemasSQL")]
+        public async Task<ActionResult<IEnumerable<Esquema>>> PutEsquemasSqlSentence(SentenciaSql sentencia)
+        {
+
+            sentencia = ExtraUtils.GenerarSqlSelect(typeof(Esquema), sentencia, _context);
+
+            if (sentencia.Parametros == null || sentencia.Parametros.Length == 0)
+                return await _context.EsquemaDbSet.FromSqlRaw(sentencia.Sentencia).ToListAsync().ConfigureAwait(true);
+            else
+                return await _context.EsquemaDbSet.FromSqlRaw(sentencia.Sentencia, ExtraUtils.ConvertirAParamPostgres(sentencia.Parametros.ToList()).ToArray()).ToListAsync().ConfigureAwait(true);
+            
+        }
+
         // POST: api/Esquemas
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] Esquemas esquema)
+        public async Task<ActionResult> Post([FromBody] Esquema esquema)
         {
-            context.Esquemas.Add(esquema);
-            await context.SaveChangesAsync();
+            _context.EsquemaDbSet.Add(esquema);
+            await _context.SaveChangesAsync();
             return new CreatedAtRouteResult("ObtenerEsquema", new { id = esquema.Secuencia }, esquema);
         }
 
         // PUT: api/Esquemas/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int secuencia, [FromBody] Esquemas value)
+        public async Task<ActionResult> Put(int secuencia, [FromBody] Esquema value)
         {
             if (secuencia != value.Secuencia) {
                 return BadRequest();
             }
-            context.Entry(value).State = EntityState.Modified;
-            await context.SaveChangesAsync();
+            _context.Entry(value).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
             return Ok();
         }
 

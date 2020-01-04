@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace DTSApi.Entitys
 {
     [Table("ESQUEMAS", Schema = "DTS_GENERALES")]
-    public class Esquemas
+    public class Esquema
     {
         [Key]
         public int Secuencia { get; set; }

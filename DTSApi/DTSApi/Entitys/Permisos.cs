@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DTSApi.Entitys
 {
-    [Table("ESQUEMAS", Schema = "DTS_SEGURIDAD")]
+    [Table("PERMISO", Schema = "DTS_SEGURIDAD")]
     public class Permisos
     {
         [Key]

@@ -18,7 +18,7 @@ namespace DTSApi.Entitys
 
         [Required]
         public int SecuenciaEsquemas { get; set; }
-        public Pantallas Esquemas { get; set; }
+        public Esquema Esquemas { get; set; }
 
         [Required]
         public int SecuenciaRol { get; set; }

@@ -20,6 +20,6 @@ namespace DTSApi.Utils
         public DbSet<Permisos> Permisos { get; set; }
         public DbSet<RolesEsquema> RolesEsquema { get; set; }
         public DbSet<Rol> Rol { get; set; }
-        public DbSet<Esquemas> Esquemas { get; set; }
+        public DbSet<Esquema> EsquemaDbSet { get; set; }
     }
 }
