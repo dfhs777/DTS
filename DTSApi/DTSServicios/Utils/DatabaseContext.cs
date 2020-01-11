@@ -1,9 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DTSServicios.Models;
+﻿using DTSServicios.Entitys;
+using Microsoft.EntityFrameworkCore;
 
 namespace DTSServicios.Utils
 {
@@ -14,5 +10,14 @@ namespace DTSServicios.Utils
         {
 
         }
+        public DbSet<Pantalla> PantallaDbSet { get; set; }
+        public DbSet<TipoPantalla> TipoPantallaDbSet { get; set; }
+        public DbSet<Permiso> PermisoDbSet { get; set; }
+        public DbSet<RolEsquema> RolEsquemaDbSet { get; set; }
+        public DbSet<Rol> RolDbSet { get; set; }
+        public DbSet<Esquema> EsquemaDbSet { get; set; }
+        public DbSet<Pais> PaisDbSet { get; set; }
+        public DbSet<Estado> EstadoDbSet { get; set; }
+        public DbSet<Ciudad> CiudadDbSet { get; set; }
     }
 }
